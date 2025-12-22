@@ -19,3 +19,9 @@ e tarefas voltada para pequenas equipes de desenvolvimento.
 
 ## Status do Projeto
 🚧 Em desenvolvimento (MVP)
+
+## Próximo passo
+- Criar models basicos (User, Project, Task)
+- Configurar associações entre Models
+- Configurar Assossiação do banco
+- Testar servidor com rota de teste
