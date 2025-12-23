@@ -56,3 +56,17 @@ criar tarefas e marcar tarefas como concluídas sem erros.
 - project_id 
 - create_at
 - update_at
+
+# Rota 
+- User
+- Project
+- Task
+
+# CRUD 
+- Criar
+- Ler
+- Atualizar,
+- Delter
+
+## Teste de endpoints com Postman
+## Validando relações e integridade dos dados aplicados

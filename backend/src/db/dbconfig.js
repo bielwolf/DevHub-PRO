@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename)
 
 const sequelize = new Sequelize ({
     dialect: 'sqlite',
-    storage: path.join(__dirname, "banco.sqlite"),
+    storage: path.join(__dirname, "storage", "banco.sqlite"),
     logging: false
 })
 

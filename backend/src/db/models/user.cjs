@@ -1,10 +1,17 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../db/dbconfig.js"; 
-
-class User extends Model {}
-
-User.init(
-  {
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class User extends Model {
+    static associate(models) {
+      User.hasMany(models.Project, {
+        foreignKey: 'user_id',
+        as: 'projects'
+      })
+    }
+  }
+  User.init({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -38,12 +45,11 @@ User.init(
       }
     }
   },
-  {
-    sequelize,         
-    modelName: 'User',  
-    tableName: 'users', 
-    timestamps: true  
-  }
-);
-
-export default User;
+    {
+      sequelize,
+      modelName: 'User',
+      tableName: 'users',
+      timestamps: true
+    });
+  return User;
+};
