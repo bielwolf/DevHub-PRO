@@ -35,17 +35,24 @@ criar tarefas e marcar tarefas como concluídas sem erros.
 
 ## User
 - id
+- username
 - email
 - password
+- create_at
+- update_at
 
 ## Project 
 - id
 - name
 - description
 - user_id
+- create_at
+- update_at
 
 ## Task
 - id
 - title
 - completed true | false
 - project_id 
+- create_at
+- update_at
