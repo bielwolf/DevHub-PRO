@@ -1,0 +1,44 @@
+import Controller from './Controller.js';
+import UserService from '../Service/UserService.js';
+
+const userService = new UserService();
+
+class UserController extends Controller {
+  constructor() {
+    super(userService);
+  }
+
+  async getAllUserData(req, res) {
+    const {id} = req.params;
+    try {
+      const userData = await this.entidadeService.getUserWithProjectsAndTasks(Number(id));
+      return res.status(200).json(userData);
+    } catch (erro) {
+      return res.status(500).json({ erro: erro.message });
+    }
+  }
+
+  async getAllUsers(req, res) {
+    try {
+      const allUsers = await this.entidadeService.getAllUsers();
+      return res.status(200).json(allUsers);
+    } catch (erro) {
+      return res.status(500).json({ erro: erro.message });
+    }
+  }
+
+  async removeUser(req, res) {
+    const {id} = req.params;
+    try {
+      const wasRemoved = await this.entidadeService.removeUser(Number(id));
+      if (!wasRemoved) {
+        return res.status(400).json({ mensagem: 'Usuário não foi removido' });
+      }
+      return res.status(200).json({ mensagem: 'Usuário removido com sucesso' });
+    } catch (erro) {
+      return res.status(500).json({ erro: erro.message });
+    }
+  }
+}
+
+export default UserController;

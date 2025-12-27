@@ -3,7 +3,7 @@ import dataSource from '../db/models';
 class Services {
   constructor(modelName) {
     this.model = modelName;
-  }
+  } 
 
   async pegaTodosOsRegistros (where = {}) {
     return dataSource[this.model].findAll({ where: {...where }});
@@ -42,7 +42,9 @@ class Services {
   }
 
   async excluiRegistro(where) {
-    return dataSource[this.model].destroy({ where: { ...where } });
+    return dataSource[this.model].destroy({ where: { ...where },
+      transaction
+     });
   }
 }
 
