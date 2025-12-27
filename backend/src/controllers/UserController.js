@@ -9,9 +9,9 @@ class UserController extends Controller {
   }
 
   async getAllUserData(req, res) {
-    const {id} = req.params;
+    const { userId } = req.params;
     try {
-      const userData = await this.entidadeService.getUserWithProjectsAndTasks(Number(id));
+      const userData = await this.entidadeService.getUserWithProjectsAndTasks(Number(userId));
       return res.status(200).json(userData);
     } catch (erro) {
       return res.status(500).json({ erro: erro.message });
@@ -28,9 +28,9 @@ class UserController extends Controller {
   }
 
   async removeUser(req, res) {
-    const {id} = req.params;
+    const { userId } = req.params;
     try {
-      const wasRemoved = await this.entidadeService.removeUser(Number(id));
+      const wasRemoved = await this.entidadeService.removeUser(Number(userId));
       if (!wasRemoved) {
         return res.status(400).json({ mensagem: 'Usuário não foi removido' });
       }
