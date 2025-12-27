@@ -1,36 +1,36 @@
-import dataSource from '../db/models';
+const dataSource = require('../db/models/index.cjs');
 
 class Services {
-  constructor(modelName) {
-    this.model = modelName;
-  } 
+  constructor(model) {
+    this.model = model;
+  }
 
   async pegaTodosOsRegistros (where = {}) {
-    return dataSource[this.model].findAll({ where: {...where }});
+    return this.model.findAll({ where: {...where }});
   }
 
   async pegaRegistrosPorEscopo(scope) {
-    return dataSource[this.model].scope(scope).findAll();
+    return this.model.scope(scope).findAll();
   }
 
   async pegaUmRegistroPorId(id) {
-    return dataSource[this.model].findByPk(id);
+    return this.model.findByPk(id);
   }
 
   async pegaUmRegistro(where) {
-    return dataSource[this.model].findOne({ where: {...where }});
+    return this.model.findOne({ where: {...where }});
   }
 
   async pegaEContaRegistros(options) {
-    return dataSource[this.model].findAndCountAll({...options });
+    return this.model.findAndCountAll({...options });
   }
 
   async criaRegistro(dadosDoRegistro) {
-    return dataSource[this.model].create(dadosDoRegistro);
+    return this.model.create(dadosDoRegistro);
   }
 
   async atualizaRegistro(dadosAtualizados, where, transacao = {}) {
-    const listadeRegistrosAtualizados = await dataSource[this.model]
+    const listadeRegistrosAtualizados = await this.model
     .update(dadosAtualizados, {
       where: { ...where},
       transaction: transacao
@@ -42,7 +42,7 @@ class Services {
   }
 
   async excluiRegistro(where) {
-    return dataSource[this.model].destroy({ where: { ...where },
+    return this.model.destroy({ where: { ...where },
       transaction
      });
   }

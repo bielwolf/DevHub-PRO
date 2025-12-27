@@ -1,8 +1,9 @@
-import Services from './Service';
+const dataSource = require('../db/models/index.cjs');
+const Services = require('./Service.cjs');
 
 class TaskServices extends Services {
   constructor() {
-    super('Task');
+    super(dataSource.Task);
   }
 
   async verifyTaskOwnership(userId, taskId) {
@@ -25,7 +26,7 @@ class TaskServices extends Services {
     return !!task;
   }
 
-  async checkTaskInProject(taskId, projectId) {
+  async isTaskCompleted(taskId, projectId) {
     const task = await dataSource.Task.findOne({
       where: {
         id: taskId,
@@ -33,8 +34,11 @@ class TaskServices extends Services {
       },
     });
 
-    return !!task;
+    if (!task) {
+      return null;
+    }
+    return task.completed;
   }
 }
 
-export default TaskServices;
+module.exports = TaskServices;

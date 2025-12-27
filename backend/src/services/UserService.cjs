@@ -1,11 +1,13 @@
-import dataSource from '../db/models';
-import Services from './Service';
+const Services = require('./Service.cjs');
+const dataSource = require('../db/models/index.cjs');
+console.log('dataSource keys:', Object.keys(dataSource));
+console.log('dataSource.User:', dataSource.User);
 
 class UserService extends Services {
     constructor() {
-        super('User');
-        this.projectServices = new Services('Project');
-        this.taskServices = new Services('Task');
+        super(dataSource.User);
+        this.projectServices = new Services(dataSource.Project);
+        this.taskServices = new Services(dataSource.Task);
     }
 
     async getUserWithProjectsAndTasks(userId) {
@@ -104,4 +106,4 @@ class UserService extends Services {
 
 }
 
-export default UserService;
+module.exports = UserService;

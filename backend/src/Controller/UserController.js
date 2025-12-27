@@ -1,5 +1,5 @@
 import Controller from './Controller.js';
-import UserService from '../Service/UserService.js';
+import UserService from '../services/UserService.cjs';
 
 const userService = new UserService();
 

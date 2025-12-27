@@ -1,9 +1,9 @@
 import Controller from './Controller.js';
-import ProjectService from '../Service/ProjectService.js';
+import ProjectService from '../services/ProjectService.cjs';
 
 const projectService = new ProjectService();
 
-class ProjectService extends Controller {
+class ProjectController extends Controller {
   constructor() {
     super(projectService);
   }
@@ -19,4 +19,4 @@ class ProjectService extends Controller {
   }
 }
 
-export default ProjectService;
+export default ProjectController;

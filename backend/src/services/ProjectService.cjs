@@ -1,8 +1,9 @@
-import Services from './Service';
+const dataSource = require('../db/models/index.cjs');
+const Services = require('./Service.cjs');
 
 class ProjectServices extends Services {
   constructor() {
-    super('Project');
+    super(dataSource.Project);
   }
 
   async getProjectsByUser(userId) {
@@ -22,4 +23,4 @@ class ProjectServices extends Services {
   }
 }
 
-export default ProjectServices;
+module.exports = ProjectServices;
