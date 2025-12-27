@@ -1,6 +1,6 @@
 import { Router } from "express";
 import tasksRoutes from './tasks.js';
-import ProjectController from '../Controller/ProjectController.js';
+import ProjectController from '../controllers/ProjectController.js';
 
 const projectController = new ProjectController();
 
